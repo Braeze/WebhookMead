@@ -19,7 +19,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
 discord_webhook_url = 'https://discordapp.com/api/webhooks/902518248367607828/y4bWuA3UDEX8T3CvEew33Z__H-zFRdj06RsXWpj3IwHza80KIUld2GT4vSN_IrK5IuBg'
-
+discord_webhook_url2 = 'https://discordapp.com/api/webhooks/905045171840892928/_APdNBqGXs-QYu9hw-XvT5Bt6QzoFfcEI7NFBNMMYGrJQ2v-isSShj0cFW2rLFmJNztM'
 @tasks.loop(minutes=60)
 async def test():
     channel = client.get_channel(755341502099619886)
@@ -41,6 +41,8 @@ async def test():
         "content": ("Dage siden <@177774908586196992> skulle havde givet os mjød: %s" % dageSiden.days)
     }
     requests.post(discord_webhook_url, data=Message)
+    requests.post(discord_webhook_url2, data=Message)
+
 
 
 
@@ -48,7 +50,7 @@ async def test():
 async def on_ready():
     test.start()
 
-client.run("OTAyNDgyOTUzMDM1MjA2Njk2.YXfEvw.CfPw_bQBnCLta8hhxhdFFVoyRT0")
+client.run("indsæt token fordi discord ikke acceptere den ligger på git")
 
 
 # In[ ]:
