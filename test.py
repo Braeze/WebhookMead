@@ -1,6 +1,14 @@
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
+#https://teams.live.com/api/mt/beta/users/searchUsers
+
+def test_json(response):
+    try:
+        print(response)
+    except:
+        pass
+
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
@@ -22,7 +30,6 @@ def run(playwright: Playwright) -> None:
     page.get_by_label("Chat Toolbar more options").click()
     page.get_by_label("New Chat (Alt+N)").click()
     #page.textContent("article:has(div.ui-box e)")
-
     #href_element = page.locator("#ExperienceContainerManagerMountElement")
     #await page.locator('[data-testid*="ExperienceContainerManagerMountElement*"]').click();
 
@@ -35,6 +42,11 @@ def run(playwright: Playwright) -> None:
     #page.frame_locator(value).get_by_placeholder("Enter name, email or phone number").press("Enter")
     page.wait_for_timeout(3000)
     print("test")
+
+    #page.on("response", lambda response: test_json(response))
+    with page.expect_response("**api/mt/beta/users/searchUsers**") as response:
+        page.frame_locator(value).locator("img").click()
+        print(response.value)
     page.frame_locator(value).locator("img").click()
     #page.frame_locator(value).locator("#downshift-2-item-0 > div").first.click()
 
@@ -43,7 +55,6 @@ def run(playwright: Playwright) -> None:
     #page.get_by_placeholder("Enter name, email or phone number").click()
     #page.get_by_placeholder("Enter name, email or phone number").fill("")
     #page.get_by_placeholder("Enter name, email or phone number").press("Enter")
-    #page.frame_locator("#experience-container-cb845c9a-d830-4fa4-b704-f5894277b26e").get_by_text("To:").click()
 
 
     # ---------------------
