@@ -64,3 +64,22 @@ def run(playwright: Playwright) -> None:
 
 with sync_playwright() as playwright:
     run(playwright)
+
+from datetime import datetime, timedelta
+
+def unixtime_to_filetime(unix_time):
+    # Convert Unix epoch time to FILETIME format
+    return int((unix_time + ((1601-01-01) * 86400)) * 10_000_000)
+
+# Get today's date in Unix epoch time
+today_unix_time = datetime.utcnow().timestamp()
+
+# Convert Unix epoch time to FILETIME format
+filetime_value = unixtime_to_filetime(today_unix_time)
+
+# Convert Unix epoch time to a readable date and time
+today_date = datetime.utcfromtimestamp(today_unix_time).strftime('%Y-%m-%d %H:%M:%S UTC')
+
+print(f"Today's Unix epoch time: {today_unix_time}")
+print(f"Today's date: {today_date}")
+print(f"Today's date in FILETIME format: {filetime_value}")
