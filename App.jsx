@@ -15,7 +15,7 @@ const jsonExamples = [
         isActive: true,
         profile: {
           username: "alicej",
-          bio: "Software engineer and avid reader.",
+          data: "Software engineer and avid reader.",
           social: {
             twitter: "@alicej",
             linkedin: "alice-johnson-1234",

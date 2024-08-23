@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 const JsonTableRow = ({ data, level = 0 }) => {
   const [expanded, setExpanded] = useState({});
 
@@ -30,28 +29,31 @@ const JsonTableRow = ({ data, level = 0 }) => {
       {Object.entries(data).map(([key, value]) => (
         <React.Fragment key={key}>
           <tr
-            className="border-b bg-white even:bg-gray-100 hover:bg-indigo-50 transition duration-300 cursor-pointer"
+            className="border-b bg-white even:bg-gray-100 hover:bg-indigo-50 transition duration-300 "
             onClick={() => typeof value === "object" && value !== null && toggleExpand(key)}
           >
             <td
-              className="px-6 py-4 font-medium text-black border-r border-gray-200"
+              className="px-6 py-4 font-medium text-black border-r border-gray-200 "
               style={{ paddingLeft: `${level * 20}px`, paddingRight: '10px' }}
             >
-             {key}
-
+                {key}
               {typeof value === "object" && value !== null ? (
-                <span className="mr-2 text-xl text-black">
+                <span className="mr-2 text-xl text-black cursor-pointer">
                   {expanded[key] ? "-" : "+"}
                 </span>
               ) : null}
             </td>
-            <td className="px-6 py-4 text-gray-700">
+            {key==="data" ? <td className="px-6 py-4 text-gray-700"> <a>{String(value)}</a>
+                 </td> :    
+                  <td className="px-6 py-4 text-gray-700">
               {typeof value === "object" && value !== null
                 ? Array.isArray(value)
                   ? "[Array]"
                   : "[Object]"
-                : String(value)}
-            </td>
+                : <a href={"/"+String(value)}>{String(value)}</a>}
+            </td>}
+
+    
           </tr>
           {expanded[key] && <JsonTableRow data={value} level={level + 1} />}
         </React.Fragment>
