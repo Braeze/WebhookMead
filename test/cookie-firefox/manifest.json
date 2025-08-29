@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Storage Exporter",
+  "version": "2.0",
+  "description": "Export cookies, localStorage, sessionStorage and send to local Spring app",
+  "permissions": [
+    "cookies",
+    "downloads",
+    "downloads.open",
+    "tabs",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Export Storage"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_security_policy": "script-src 'self'; object-src 'self'"
+}
